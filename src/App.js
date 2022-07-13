@@ -1,11 +1,25 @@
 import "./App.css";
-import Navbar from "./components/NavBar.js";
+import { ItemListContainer } from "./components/ItemListContainer";
+import { Container } from "@mui/material";
+import { NavBar } from "./components/NavBar.js";
 
 function App() {
   return (
-    <header>
-      <Navbar />
-    </header>
+    <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <Container
+          maxWidth="sm"
+          sx={{
+            paddingTop: "3rem",
+          }}
+        >
+          <ItemListContainer />
+        </Container>
+      </main>
+    </>
   );
 }
 
