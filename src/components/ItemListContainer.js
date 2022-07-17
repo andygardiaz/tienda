@@ -9,7 +9,7 @@ export const ItemListContainer = () => {
 
   return (
     <Grid container spacing={2}>
-      <ItemCount onAdd={handleCount} />
+      <ItemCount stock={10} onAdd={handleCount} />
     </Grid>
   );
 };
