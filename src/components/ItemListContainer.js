@@ -1,10 +1,15 @@
-import { Grid } from "@mui/material";
 import React from "react";
+import { Grid } from "@mui/material";
+import { ItemCount } from "./ItemCount";
 
 export const ItemListContainer = () => {
+  const handleCount = (action) => {
+    console.log(action);
+  };
+
   return (
     <Grid container spacing={2}>
-      <h1>Artículos de la tienda</h1>
+      <ItemCount onAdd={handleCount} />
     </Grid>
   );
 };
