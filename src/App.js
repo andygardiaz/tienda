@@ -11,7 +11,7 @@ function App() {
       </header>
       <main>
         <Container
-          maxWidth="sm"
+          maxWidth="lg"
           sx={{
             paddingTop: "3rem",
           }}
