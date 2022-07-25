@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Chip, IconButton, Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   return (
@@ -15,16 +16,20 @@ export const ProductCard = ({ product }) => {
         color="primary"
         sx={{ position: "absolute", top: "1rem", left: "1rem" }}
       />
-      <CardMedia
-        component="img"
-        height="300"
-        image={product.second_image}
-        alt={product.name}
-      />
+      <Link to={`/product/${product.id}`}>
+        <CardMedia
+          component="img"
+          height="300"
+          image={product.second_image}
+          alt={product.name}
+        />
+      </Link>
       <CardContent sx={{ padding: "1rem" }}>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.name}
-        </Typography>
+        <Link to={`/product/${product.id}`}>
+          <Typography gutterBottom variant="h5" component="div">
+            {product.name}
+          </Typography>
+        </Link>
         <Typography gutterBottom variant="h5" component="div">
           <bdi>
             <span>$</span>
