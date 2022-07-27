@@ -16,16 +16,16 @@ export const ProductCard = ({ product }) => {
         color="primary"
         sx={{ position: "absolute", top: "1rem", left: "1rem" }}
       />
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/item/${product.id}`}>
         <CardMedia
           component="img"
-          height="300"
+          height="320"
           image={product.second_image}
           alt={product.name}
         />
       </Link>
       <CardContent sx={{ padding: "1rem" }}>
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/item/${product.id}`}>
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
           </Typography>

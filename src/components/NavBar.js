@@ -11,12 +11,17 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { CartWidget } from "./CartWidget";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
 
 const pages = [
   { name: "Productos", url: "/" },
-  { name: "Precios", url: "/" },
-  { name: "Categorías", url: "/" },
+  { name: "Categorías", url: "/categories" },
 ];
+
+const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -82,9 +87,9 @@ export const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link to={page.url}>
+                  <CustomLink to={page.url}>
                     <Typography textAlign="center">{page.name}</Typography>
-                  </Link>
+                  </CustomLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,7 +119,7 @@ export const NavBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to={page.url}>{page.name}</Link>
+                <CustomLink to={page.url}>{page.name}</CustomLink>
               </Button>
             ))}
           </Box>

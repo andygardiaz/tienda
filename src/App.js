@@ -4,6 +4,7 @@ import { ItemDetailContainer } from "./components/ItemDetailContainer";
 import { Container } from "@mui/material";
 import { NavBar } from "./components/NavBar.js";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { CategoryContainer } from "./components/CategoryContainer";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<ItemListContainer />} />
-            <Route path="/product/:id" element={<ItemDetailContainer />} />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
+            <Route path="/categories" element={<CategoryContainer />} />
           </Routes>
         </Container>
       </main>

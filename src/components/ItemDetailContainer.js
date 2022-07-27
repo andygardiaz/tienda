@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { API_PRODUCT_DETAIL } from "../constants";
-import { ProductDetail } from "./ProductDetail";
+import { ItemDetail } from "./ItemDetail";
 
 export const ItemDetailContainer = () => {
   const { id } = useParams();
@@ -13,5 +13,5 @@ export const ItemDetailContainer = () => {
     },
   });
 
-  return <>{!loading && !error && data && <ProductDetail product={data} />}</>;
+  return <>{!loading && !error && data && <ItemDetail product={data} />}</>;
 };
