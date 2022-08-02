@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { ProductList } from "./ItemList";
 import { API_PRODUCTS } from "../constants";
 import { useFetch } from "../hooks/useFetch";

@@ -1,10 +1,20 @@
-import React from "react";
+import * as React from "react";
 import { Button, Stack } from "@mui/material";
 import { ItemCount } from "./ItemCount";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ImageItemDetail } from "./ImageItemDetail";
 
 export const ItemDetail = ({ product }) => {
+  const [counterState, setCounterState] = React.useState({
+    count: 1,
+    hideCounter: false,
+  });
+
+  const onAdd = (state) => {
+    setCounterState({ count: state.count, hideCounter: state.hideCounter });
+    console.log("onAdd", state);
+  };
+
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -28,7 +38,12 @@ export const ItemDetail = ({ product }) => {
           <h1>{product.name}</h1>
           <h2>${product.price}</h2>
           <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
-          <ItemCount stock="10" onAdd={console.log("Artículo añadido")} />
+          {!counterState.hideCounter && (
+            <ItemCount stock="10" initial={1} onAdd={onAdd} />
+          )}
+          <Link to={`/cart`}>
+            <Button variant="contained">Finalizar compra</Button>
+          </Link>
         </Stack>
       </Stack>
     </div>

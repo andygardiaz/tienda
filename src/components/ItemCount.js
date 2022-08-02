@@ -14,14 +14,12 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
   const handleAdd = () => {
     if (stock > count) {
       setCount(count + 1);
-      onAdd && onAdd("Articulo agregado");
     }
   };
 
   const handleRemove = () => {
     if (count > 1) {
       setCount(count - 1);
-      onAdd && onAdd("Articulo eliminado");
     }
   };
 
@@ -67,7 +65,12 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
           </IconButton>
         </Stack>
       </Paper>
-      <Button variant="outlined">Agregar al carrito</Button>
+      <Button
+        variant="outlined"
+        onClick={() => onAdd && onAdd({ count, hideCounter: true })}
+      >
+        Agregar al carrito
+      </Button>
     </Stack>
   );
 };

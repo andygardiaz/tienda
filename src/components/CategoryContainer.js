@@ -2,7 +2,7 @@ import * as React from "react";
 import { useFetch } from "../hooks/useFetch";
 import { API_CATEGORIES } from "../constants";
 import { CategoryFilter } from "./CategoryFilter";
-import { Divider, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { ItemListContainer } from "./ItemListContainer";
 
 export const CategoryContainer = () => {
@@ -18,12 +18,12 @@ export const CategoryContainer = () => {
   return (
     <>
       {!loading && !error && data && (
-        <Stack spacing={2} direction={"row"} sx={{ flexWrap: "wrap" }}>
+        <Stack.Provider spacing={2} direction={"row"} sx={{ flexWrap: "wrap" }}>
           <CategoryFilter categories={data} setCategory={setCategory} />
           <Stack spacing={2} sx={{ maxWidth: "80%" }}>
             <ItemListContainer category={category} />
           </Stack>
-        </Stack>
+        </Stack.Provider>
       )}
     </>
   );
