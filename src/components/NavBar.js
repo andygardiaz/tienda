@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { CartWidget } from "./CartWidget";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import { CartContext } from "../Context/CartContext";
 
 const pages = [
   { name: "Productos", url: "/" },
@@ -25,6 +26,7 @@ const CustomLink = styled(Link)`
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { storedProducts } = React.useContext(CartContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -125,7 +127,9 @@ export const NavBar = () => {
           </Box>
 
           <Box>
-            <CartWidget cartItems={4} />
+            <Link to={`/cart`}>
+              <CartWidget cartItems={storedProducts.length} />
+            </Link>
           </Box>
         </Toolbar>
       </Container>

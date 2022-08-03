@@ -18,12 +18,12 @@ export const CategoryContainer = () => {
   return (
     <>
       {!loading && !error && data && (
-        <Stack.Provider spacing={2} direction={"row"} sx={{ flexWrap: "wrap" }}>
+        <Stack spacing={2} direction={"row"} sx={{ flexWrap: "wrap" }}>
           <CategoryFilter categories={data} setCategory={setCategory} />
           <Stack spacing={2} sx={{ maxWidth: "80%" }}>
             <ItemListContainer category={category} />
           </Stack>
-        </Stack.Provider>
+        </Stack>
       )}
     </>
   );

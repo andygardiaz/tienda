@@ -3,8 +3,10 @@ import { Button, Stack } from "@mui/material";
 import { ItemCount } from "./ItemCount";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageItemDetail } from "./ImageItemDetail";
+import { CartContext } from "../Context/CartContext";
 
 export const ItemDetail = ({ product }) => {
+  const { addProduct } = React.useContext(CartContext);
   const [counterState, setCounterState] = React.useState({
     count: 1,
     hideCounter: false,
@@ -12,7 +14,7 @@ export const ItemDetail = ({ product }) => {
 
   const onAdd = (state) => {
     setCounterState({ count: state.count, hideCounter: state.hideCounter });
-    console.log("onAdd", state);
+    addProduct(product, state.count);
   };
 
   const navigate = useNavigate();

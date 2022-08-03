@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import { ProductList } from "./ItemList";
-import { API_PRODUCTS } from "../constants";
-import { useFetch } from "../hooks/useFetch";
+import { ProductContext } from "../Context/ProductContext";
 
 export const ItemListContainer = ({ category }) => {
-  const { data, loading, error } = useFetch(
-    `${API_PRODUCTS}?category=${category}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const { products, loading, error, setCategory } = useContext(ProductContext);
+
+  useEffect(() => {
+    if (category) {
+      setCategory(category);
     }
-  );
+  }, [category]);
+
   return (
     <Grid container spacing={4}>
-      {!loading && !error && data && <ProductList items={data.results} />}
+      {!loading && !error && products && <ProductList items={products} />}
     </Grid>
   );
 };
