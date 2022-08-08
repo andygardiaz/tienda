@@ -7,8 +7,10 @@ import { Chip, IconButton, Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Link } from "react-router-dom";
+import { CartContext } from "../Context/CartContext";
 
 export const ProductCard = ({ product }) => {
+  const { addProduct } = React.useContext(CartContext);
   return (
     <Card sx={{ position: "relative" }}>
       <Chip
@@ -51,7 +53,10 @@ export const ProductCard = ({ product }) => {
           />
           {product.visits}
         </IconButton>
-        <IconButton aria-label="añadir al carrito">
+        <IconButton
+          aria-label="añadir al carrito"
+          onClick={() => addProduct(product, 1)}
+        >
           <AddShoppingCartIcon
             sx={{
               color: "gray",

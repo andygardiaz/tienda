@@ -127,7 +127,7 @@ export const NavBar = () => {
           </Box>
 
           <Box>
-            <Link to={`/cart`}>
+            <Link to={storedProducts.length && `/cart`}>
               <CartWidget cartItems={storedProducts.length} />
             </Link>
           </Box>

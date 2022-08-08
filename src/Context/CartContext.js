@@ -5,6 +5,7 @@ export const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
   const [storedProducts, setProducts] = useLocalStorage("cart", []);
+  const [totalAmmount, setTotalAmmount] = React.useState(0);
 
   const addProduct = (product, quantity) => {
     const productInCart = storedProducts.find((p) => p.id === product.id);
@@ -33,10 +34,22 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const getTotalAmmount = () => {
+    const total = storedProducts.reduce((acc, product) => {
+      return acc + product.price * product.quantity;
+    }, 0);
+    setTotalAmmount(total);
+  };
+
+  React.useEffect(() => {
+    getTotalAmmount();
+  }, [storedProducts]);
+
   return (
     <CartContext.Provider
       value={{
         storedProducts,
+        totalAmmount,
         addProduct,
         removeProduct,
       }}

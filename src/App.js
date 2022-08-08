@@ -22,6 +22,7 @@ function App() {
               maxWidth="lg"
               sx={{
                 paddingTop: "3rem",
+                paddingBottom: "3rem",
               }}
             >
               <Routes>
