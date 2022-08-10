@@ -14,10 +14,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { CartContext } from "../Context/CartContext";
 
-const pages = [
-  { name: "Productos", url: "/" },
-  { name: "Categorías", url: "/categories" },
-];
+const pages = [{ name: "Productos", url: "/" }];
 
 const CustomLink = styled(Link)`
   text-decoration: none;

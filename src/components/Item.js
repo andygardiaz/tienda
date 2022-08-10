@@ -5,7 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Chip, IconButton, Stack } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Link } from "react-router-dom";
 import { CartContext } from "../Context/CartContext";
 
@@ -13,23 +12,25 @@ export const ProductCard = ({ product }) => {
   const { addProduct } = React.useContext(CartContext);
   return (
     <Card sx={{ position: "relative" }}>
-      <Chip
-        label={product.category[0].name}
-        color="primary"
-        sx={{ position: "absolute", top: "1rem", left: "1rem" }}
-      />
-      <Link to={`/item/${product.id}`}>
+      <Link to={`/category/${product.category_id}`}>
+        <Chip
+          label={product.category_name}
+          color="primary"
+          sx={{ position: "absolute", top: "1rem", left: "1rem" }}
+        />
+      </Link>
+      <Link to={`/items/${product.id}`}>
         <CardMedia
           component="img"
           height="320"
-          image={product.second_image}
-          alt={product.name}
+          image={product.main_image}
+          alt={product.title}
         />
       </Link>
       <CardContent sx={{ padding: "1rem" }}>
-        <Link to={`/item/${product.id}`}>
+        <Link to={`/items/${product.id}`}>
           <Typography gutterBottom variant="h5" component="div">
-            {product.name}
+            {product.title}
           </Typography>
         </Link>
         <Typography gutterBottom variant="h5" component="div">
@@ -45,14 +46,6 @@ export const ProductCard = ({ product }) => {
         alignItems="center"
         spacing={2}
       >
-        <IconButton aria-label="Visitas">
-          <VisibilityIcon
-            sx={{
-              color: "gray",
-            }}
-          />
-          {product.visits}
-        </IconButton>
         <IconButton
           aria-label="añadir al carrito"
           onClick={() => addProduct(product, 1)}

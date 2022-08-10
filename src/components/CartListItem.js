@@ -24,7 +24,7 @@ export const CartListItem = ({ product, removeProduct }) => {
     >
       <ListItemAvatar>
         <Avatar
-          alt={product.name}
+          alt={product.title}
           src={product.main_image}
           variant="square"
           sx={{ width: 150, height: 150 }}
@@ -38,7 +38,7 @@ export const CartListItem = ({ product, removeProduct }) => {
             variant="h5"
             color="text.primary"
           >
-            {product.name}
+            {product.title}
           </Typography>
         }
         secondary={

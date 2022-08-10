@@ -30,14 +30,14 @@ export const ItemDetail = ({ product }) => {
       >
         <ImageItemDetail
           src={product.main_image}
-          alt={product.name}
+          alt={product.title}
           width="48%"
         />
         <Stack spacing={2} sx={{ flex: "1 1 45%" }}>
           <Button size="small" onClick={() => goBack()}>
             Ir a atrás
           </Button>
-          <h1>{product.name}</h1>
+          <h1>{product.title}</h1>
           <h2>${product.price}</h2>
           <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
           {!counterState.hideCounter && (

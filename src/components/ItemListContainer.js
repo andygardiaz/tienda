@@ -5,18 +5,19 @@ import { ProductList } from "./ItemList";
 import { ProductContext } from "../Context/ProductContext";
 
 export const ItemListContainer = ({ category }) => {
-  const { products, loading, error, setCategory } = useContext(ProductContext);
+  const { products, getProducts, getProductsByCategory } =
+    useContext(ProductContext);
 
   useEffect(() => {
-    if (category) {
-      setCategory(category);
-    }
+    category ? getProductsByCategory(category) : getProducts();
   }, [category]);
 
   return (
-    <Grid container spacing={4}>
-      {!loading && !error && products && <ProductList items={products} />}
-    </Grid>
+    <>
+      <Grid container spacing={4}>
+        {products && <ProductList items={products} />}
+      </Grid>
+    </>
   );
 };
 

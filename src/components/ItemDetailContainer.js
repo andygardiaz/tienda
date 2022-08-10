@@ -1,17 +1,15 @@
-import React from "react";
+import * as React from "react";
 import { useParams } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
-import { API_PRODUCT_DETAIL } from "../constants";
+import { ProductContext } from "../Context/ProductContext";
 import { ItemDetail } from "./ItemDetail";
 
 export const ItemDetailContainer = () => {
   const { id } = useParams();
-  const { data, loading, error } = useFetch(`${API_PRODUCT_DETAIL}/${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const { productDetails, getProductsById } = React.useContext(ProductContext);
 
-  return <>{!loading && !error && data && <ItemDetail product={data} />}</>;
+  React.useEffect(() => {
+    getProductsById(id);
+  }, [id]);
+
+  return <>{productDetails && <ItemDetail product={productDetails} />}</>;
 };
