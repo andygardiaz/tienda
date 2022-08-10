@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDPtY0RdNILUWqXoW1LLY5gjh20Q9wIKpA",
+  apiKey: "",
   authDomain: "tienda-9464b.firebaseapp.com",
   projectId: "tienda-9464b",
   storageBucket: "tienda-9464b.appspot.com",
