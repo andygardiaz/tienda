@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 export const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
   const [storedProducts, setProducts] = useLocalStorage("cart", []);
   const [totalAmmount, setTotalAmmount] = React.useState(0);
+  const [idOrder, setIdOrder] = React.useState();
 
   const addProduct = (product, quantity) => {
     const productInCart = storedProducts.find((p) => p.id === product.id);
@@ -41,6 +43,29 @@ export const CartProvider = ({ children }) => {
     setTotalAmmount(total);
   };
 
+  const mappedProducts = storedProducts.map((product) => {
+    return {
+      id: product.id,
+      title: product.title,
+      price: product.price * product.quantity,
+    };
+  });
+
+  const addOrder = (userData) => {
+    const db = getFirestore();
+    const ordersCollection = collection(db, "orders");
+    const order = {
+      buyer: {
+        ...userData,
+      },
+      items: [...mappedProducts],
+      total: totalAmmount,
+      date: new Date(),
+    };
+
+    addDoc(ordersCollection, order).then((snapshot) => setIdOrder(snapshot.id));
+  };
+
   React.useEffect(() => {
     getTotalAmmount();
   }, [storedProducts]);
@@ -48,10 +73,12 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        idOrder,
         storedProducts,
         totalAmmount,
         addProduct,
         removeProduct,
+        addOrder,
       }}
     >
       {children}

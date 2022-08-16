@@ -39,7 +39,7 @@ export const Cart = () => {
             <Typography variant="h5" component="div">
               Total: ${totalAmmount}
             </Typography>
-            <Link to="#">
+            <Link to="/checkout">
               <Button variant="contained">Checkout</Button>
             </Link>
           </Box>
