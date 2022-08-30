@@ -1,3 +1,15 @@
+# Welcome to Chopi eCommerce | by @andygardiaz
+
+# IMPORTANT
+
+To start the project locally, you must create the env.development file in the root, using an API KEY enabled for database access. You will also need to run the commands npm install to install the dependencies associated with the project and npm start to start the project locally at http://localhost:3000/
+
+
+Chopi eCommerce GIF | DEMO : 
+![alt text][logo]
+
+[logo]: public/chopi_demo.gif "Chopi eCommerce GIF | DEMO"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
