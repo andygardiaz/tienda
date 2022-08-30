@@ -14,6 +14,7 @@ export const ProductContext = React.createContext();
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = React.useState([]);
   const [productDetails, setProductDetails] = React.useState([]);
+  const [categories, setCategories] = React.useState([]);
 
   const getCategory = (category) => {
     const db = getFirestore();
@@ -48,6 +49,16 @@ export const ProductProvider = ({ children }) => {
     );
   };
 
+  const getCategoriesCollection = () => {
+    const db = getFirestore();
+    const q = collection(db, "categories");
+
+    getDocs(q).then((snapshot) => {
+      const docs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setCategories(docs);
+    });
+  };
+
   const getProductsByCategory = (category) => {
     const db = getFirestore();
 
@@ -60,10 +71,15 @@ export const ProductProvider = ({ children }) => {
     });
   };
 
+  React.useEffect(() => {
+    getCategoriesCollection();
+  }, []);
+
   return (
     <ProductContext.Provider
       value={{
         products,
+        categories,
         productDetails,
         getCategory,
         getProducts,

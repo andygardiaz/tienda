@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import { ProductList } from "./ItemList";
 import { ProductContext } from "../Context/ProductContext";
+import { useParams } from "react-router-dom";
 
-export const ItemListContainer = ({ category }) => {
+export const ItemListContainer = () => {
+  const { category } = useParams();
   const { products, getProducts, getProductsByCategory } =
     useContext(ProductContext);
 

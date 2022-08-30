@@ -8,6 +8,7 @@ export const CartProvider = ({ children }) => {
   const [storedProducts, setProducts] = useLocalStorage("cart", []);
   const [totalAmmount, setTotalAmmount] = React.useState(0);
   const [idOrder, setIdOrder] = React.useState();
+  const [totalProducts, setTotalProducts] = React.useState(0);
 
   const addProduct = (product, quantity) => {
     const productInCart = storedProducts.find((p) => p.id === product.id);
@@ -43,6 +44,13 @@ export const CartProvider = ({ children }) => {
     setTotalAmmount(total);
   };
 
+  const getTotalProducts = () => {
+    const total = storedProducts.reduce((acc, product) => {
+      return acc + product.quantity;
+    }, 0);
+    setTotalProducts(total);
+  };
+
   const mappedProducts = storedProducts.map((product) => {
     return {
       id: product.id,
@@ -66,8 +74,13 @@ export const CartProvider = ({ children }) => {
     addDoc(ordersCollection, order).then((snapshot) => setIdOrder(snapshot.id));
   };
 
+  const clearCart = () => {
+    setProducts([]);
+  };
+
   React.useEffect(() => {
     getTotalAmmount();
+    getTotalProducts();
   }, [storedProducts]);
 
   return (
@@ -76,9 +89,11 @@ export const CartProvider = ({ children }) => {
         idOrder,
         storedProducts,
         totalAmmount,
+        totalProducts,
         addProduct,
         removeProduct,
         addOrder,
+        clearCart,
       }}
     >
       {children}

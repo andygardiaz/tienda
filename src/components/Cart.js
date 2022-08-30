@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import List from "@mui/material/List";
 import { CartContext } from "../Context/CartContext";
-import Divider from "@mui/material/Divider";
 import { CartListItem } from "./CartListItem";
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import { StyledLink } from "./styles/styles";
 
 export const Cart = () => {
   const { storedProducts, totalAmmount, removeProduct } =
@@ -13,17 +12,24 @@ export const Cart = () => {
 
   return (
     <>
+      <Typography
+        sx={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}
+        component="span"
+        variant="h4"
+        color="text.primary"
+      >
+        Cart
+      </Typography>
       {storedProducts.length > 0 ? (
         <>
           <List>
             {storedProducts.map((product, index) => (
               <>
                 <CartListItem
-                  key={`product-${product.id}`}
+                  key={`product-${product.id}-${index}`}
                   product={product}
                   removeProduct={removeProduct}
                 />
-                <Divider variant="inset" component="li" />
               </>
             ))}
           </List>
@@ -34,14 +40,15 @@ export const Cart = () => {
               justifyContent: "center",
               flexDirection: "column",
               alignItems: "center",
+              gap: "1.5rem",
             }}
           >
-            <Typography variant="h5" component="div">
+            <Typography variant="h5" component="div" color="#00e676">
               Total: ${totalAmmount}
             </Typography>
-            <Link to="/checkout">
+            <StyledLink to="/checkout">
               <Button variant="contained">Checkout</Button>
-            </Link>
+            </StyledLink>
           </Box>
         </>
       ) : (
@@ -52,14 +59,15 @@ export const Cart = () => {
             justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
+            gap: "1.5rem",
           }}
         >
           <Typography variant="h4" component="div">
             No tiene elementos en el carrito
           </Typography>
-          <Link to="/">
+          <StyledLink to="/">
             <Button variant="contained">Volver al inicio</Button>
-          </Link>
+          </StyledLink>
         </Box>
       )}
     </>
